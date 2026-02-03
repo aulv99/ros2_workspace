@@ -1,0 +1,83 @@
+https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/
+
+Build projects
+colcon build --packages-select amr_control
+source install/setup.bash
+
+Launch Gazebo
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+
+Control the robot
+export TURTLEBOT3_MODEL=waffle_pi
+ros2 run turtlebot3_teleop teleop_keyboard
+
+Launch RVIZ
+export TURTLEBOT3_MODEL=waffle_pi
+ros2 launch turtlebot3_bringup rviz2.launch.py
+
+
+
+
+Workspace (C++ or CMake)
+Build Specific Package:
+colcon build --packages-select amr_control,
+    - Compiles only your package (faster than building everything).
+
+Build All:
+colcon build
+    - Compiles the entire workspace. Use this if you add new dependencies.
+
+Clean Rebuild:
+rm -rf build/ install/ && colcon build
+    - Deletes old build files and rebuilds from scratch. Fixes ""Zombie CMake"" errors.
+
+Source Environment:
+source install/setup.bash,
+    - Mandatory. Run this in every new terminal to make ROS ""see"" your built code.
+
+
+
+Gazebo:
+Launch World:
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+    - "Starts Gazebo with the default ""TurtleBot3 World"" (hexagonal pillars)."
+
+Reset Robot:
+ros2 service call /reset_simulation std_srvs/srv/Empty
+    - Teleports the robot and objects back to the start without restarting Gazebo.
+
+Kill Gazebo:
+pkill -f gazebo
+    - Force-quits all Gazebo background processes. Use this if the window freezes or won't close.
+
+
+Robot Control:
+Run Your Node:
+ros2 run amr_control go_to_goal
+    - Launches your custom C++ controller (Waypoint Patrol).
+
+Manual Teleop:
+ros2 run turtlebot3_teleop teleop_keyboard
+    - Allows you to drive the robot with keyboard keys (WASD/X).
+
+Emergency Stop:
+Ctrl + C
+    - Stops the currently running node immediately.
+
+
+Visualization & Debugging:
+Launch Rviz:
+ros2 launch turtlebot3_bringup rviz2.launch.py
+    - Opens the 3D visualization tool. Remember to set Frame to odom and add /scan.
+
+List Topics:
+ros2 topic list
+    -Shows all active data streams (e.g., /scan, /odom, /cmd_vel).
+
+Read Topic Data:
+ros2 topic echo /odom
+    - Prints the live data stream of a topic. Useful to check coordinates (x,y).
+
+Check Nodes: 
+ros2 node list
+    - Lists all running programs to see if your node crashed or is still active.

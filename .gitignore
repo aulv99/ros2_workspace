@@ -1,0 +1,20 @@
+# ROS 2 Build Artifacts
+build/
+install/
+log/
+.colcon/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C++ Cache
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS Junk
+.DS_Store
+Thumbs.db
