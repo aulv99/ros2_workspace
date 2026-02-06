@@ -54,10 +54,22 @@ ament_target_dependencies(waypoint_patrol
     tf2_geometry_msgs
 )
 
+add_executable(obstacle_avoidance src/obstacle_avoidance.cpp)
+target_compile_features(obstacle_avoidance PUBLIC cxx_std_17)
+ament_target_dependencies(obstacle_avoidance
+    rclcpp
+    sensor_msgs
+    geometry_msgs
+    nav_msgs
+    tf2_geometry_msgs
+    tf2_geometry_msgs
+)
+
 install(TARGETS
   wall_stop
   go_to_goal
   waypoint_patrol
+  obstacle_avoidance
   DESTINATION lib/${PROJECT_NAME}
 )
 
