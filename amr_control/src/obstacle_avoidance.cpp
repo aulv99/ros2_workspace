@@ -23,8 +23,8 @@ private:
     std::ofstream data_file_;
 
     // target
-    double target_x_ = 1.5;
-    double target_y_ = 0.5;
+    double target_x_ = 2;
+    double target_y_ = 0;
 
     // robot state
     double x_ = 0.0;

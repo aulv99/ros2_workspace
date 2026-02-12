@@ -17,6 +17,8 @@ find_package(nav_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 
+include_directories(include)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -65,7 +67,11 @@ ament_target_dependencies(obstacle_avoidance
     tf2_geometry_msgs
 )
 
+add_executable(wall_follower src/wall_follower.cpp)
+ament_target_dependencies(wall_follower rclcpp geometry_msgs sensor_msgs)
+
 install(TARGETS
+  wall_follower
   wall_stop
   go_to_goal
   waypoint_patrol

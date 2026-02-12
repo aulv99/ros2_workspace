@@ -42,6 +42,9 @@ Launch World:
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
     - "Starts Gazebo with the default ""TurtleBot3 World"" (hexagonal pillars)."
 
+export TURTLEBOT3_MODEL=burger
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+
 Reset Robot:
 ros2 service call /reset_simulation std_srvs/srv/Empty
     - Teleports the robot and objects back to the start without restarting Gazebo.
